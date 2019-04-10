@@ -1,0 +1,10 @@
+include MANIFEST.in
+
+# These files are referenced from setup.py so we must make sure
+# of including them in the source distribution.
+include README.md
+include requirements.txt tests-requirements.txt
+
+include example/static/favicon.ico
+recursive-include example/templates *.html
+recursive-include flacon/templates *.html
