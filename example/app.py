@@ -16,6 +16,7 @@ except ImportError:
 class Error(Exception):
 
     """All local errors."""
+
     pass
 
 
@@ -61,7 +62,6 @@ def is_healthy():
 if flask_restplus:
 
     class HelloWorld(flask_restplus.Resource):
-
         def get(self):
             return {"hello": "world"}
 

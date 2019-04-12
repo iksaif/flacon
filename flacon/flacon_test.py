@@ -13,7 +13,6 @@ from flacon import testutils
 
 
 class FlaconTest(unittest.TestCase):
-
     def setUp(self):
         # Don't use a shared registry.
         self.registry = prometheus_client.CollectorRegistry(auto_describe=True)
@@ -35,7 +34,9 @@ class FlaconTest(unittest.TestCase):
         testutils.setup(g)
         self.assertIsNotNone(g)
 
-    def test_disable_embedded_logging_should_prevent_logging_from_being_configured(self):
+    def test_disable_embedded_logging_should_prevent_logging_from_being_configured(
+        self
+    ):
         logger = mockito.mock()
         app = flask.Flask(__name__)
         app.logger = logger

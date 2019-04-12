@@ -20,6 +20,7 @@ except ImportError:
 class Error(Exception):
 
     """All local errors."""
+
     pass
 
 
@@ -145,10 +146,12 @@ class Flacon(object):
         parser.add_argument(
             "--threads", default=None, help="Number of threads to use.", type=int
         )
-        parser.add_argument("--disable-embedded-logging",
-                            default=False,
-                            action="store_true",
-                            help="Disable embedded logging configuration")
+        parser.add_argument(
+            "--disable-embedded-logging",
+            default=False,
+            action="store_true",
+            help="Disable embedded logging configuration",
+        )
         return parser
 
     def setup_logging(self, log_level):
@@ -311,15 +314,19 @@ class Flacon(object):
         import multiprocessing
 
         class FlaconApplication(gunicorn.app.base.BaseApplication):
-
             def __init__(self, app, options=None):
                 self.options = options or {}
                 self.application = app
                 super(FlaconApplication, self).__init__()
 
             def load_config(self):
-                config = dict([(key, value) for key, value in iteritems(self.options)
-                               if key in self.cfg.settings and value is not None])
+                config = dict(
+                    [
+                        (key, value)
+                        for key, value in iteritems(self.options)
+                        if key in self.cfg.settings and value is not None
+                    ]
+                )
                 for key, value in iteritems(config):
                     self.cfg.set(key.lower(), value)
 
@@ -327,9 +334,9 @@ class Flacon(object):
                 return self.application
 
         options = {
-            'bind': '%s:%s' % (self.host, self.port),
-            'workers': self.threads or ((multiprocessing.cpu_count() * 2) + 1),
-            'debug': self.debug,
+            "bind": "%s:%s" % (self.host, self.port),
+            "workers": self.threads or ((multiprocessing.cpu_count() * 2) + 1),
+            "debug": self.debug,
             **options,
         }
         FlaconApplication(self.app, options).run()
