@@ -38,7 +38,7 @@ setuptools.setup(
     # metadata for upload to PyPI
     author="Corentin Chary",
     long_description=readme,
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
     author_email="corentin.chary@gmail.com",
     description="Flask(-Twisted) microframework for microservices with Prometheus and Sentry support.",
     license="Apache 2",
