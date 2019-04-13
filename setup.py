@@ -21,19 +21,13 @@ _INSTALL_REQUIRES = [l for l in _REQUIREMENTS_TXT if "://" not in l]
 _TEST_REQUIRE = [l for l in _TESTS_REQUIREMENTS_TXT if "://" not in l]
 
 readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "README.md")
-try:
-    from m2r import parse_from_file
-
-    readme = parse_from_file(readme_file)
-except ImportError:
-    # m2r may not be installed in user environment
-    with open(readme_file, encoding="utf-8") as f:
-        readme = f.read()
+with open(readme_file, encoding="utf-8") as f:
+    readme = f.read()
 
 
 setuptools.setup(
     name="flacon",
-    version="0.3.0",
+    version="0.3.1",
     include_package_data=True,
     install_requires=_INSTALL_REQUIRES,
     extras_require={"twisted": ["flask-twisted", "twisted"], "gunicorn": ["gunicorn"]},
@@ -44,6 +38,7 @@ setuptools.setup(
     # metadata for upload to PyPI
     author="Corentin Chary",
     long_description=readme,
+    long_description_content_type='text/markdown'
     author_email="corentin.chary@gmail.com",
     description="Flask(-Twisted) microframework for microservices with Prometheus and Sentry support.",
     license="Apache 2",
