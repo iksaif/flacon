@@ -21,7 +21,7 @@ _INSTALL_REQUIRES = [l for l in _REQUIREMENTS_TXT if "://" not in l]
 _TEST_REQUIRE = [l for l in _TESTS_REQUIREMENTS_TXT if "://" not in l]
 
 readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "README.md")
-with open(readme_file, encoding="utf-8") as f:
+with open(readme_file) as f:
     readme = f.read()
 
 
@@ -50,8 +50,6 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
