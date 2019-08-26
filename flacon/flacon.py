@@ -337,6 +337,7 @@ class Flacon(object):
             "bind": "%s:%s" % (self.host, self.port),
             "workers": self.threads or ((multiprocessing.cpu_count() * 2) + 1),
             "debug": self.debug,
+            "accesslog": "-",
             **options,
         }
         FlaconApplication(self.app, options).run()
