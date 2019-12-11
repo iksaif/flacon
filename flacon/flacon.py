@@ -9,7 +9,7 @@ import sys
 import pkg_resources
 
 from prometheus_flask_exporter import PrometheusMetrics
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 try:
     from raven.contrib.flask import Sentry
@@ -310,7 +310,6 @@ class Flacon(object):
     def run_with_gunicorn(self, **options):
         """Run with gunicorn."""
         import gunicorn.app.base
-        from gunicorn.six import iteritems
         import multiprocessing
 
         class FlaconApplication(gunicorn.app.base.BaseApplication):
@@ -323,11 +322,11 @@ class Flacon(object):
                 config = dict(
                     [
                         (key, value)
-                        for key, value in iteritems(self.options)
+                        for key, value in self.options.items()
                         if key in self.cfg.settings and value is not None
                     ]
                 )
-                for key, value in iteritems(config):
+                for key, value in config.items():
                     self.cfg.set(key.lower(), value)
 
             def load(self):
