@@ -8,9 +8,9 @@ from flacon import Flacon
 
 # Optional API.
 try:
-    import flask_restplus
+    import flask_restx
 except ImportError:
-    flask_restplus = None
+    flask_restx = None
 
 
 class Error(Exception):
@@ -59,19 +59,19 @@ def is_healthy():
     return True
 
 
-if flask_restplus:
+if flask_restx:
 
-    class HelloWorld(flask_restplus.Resource):
+    class HelloWorld(flask_restx.Resource):
         def get(self):
             return {"hello": "world"}
 
 
 def initialize_api(flask_app):
     """Initialize an API."""
-    if not flask_restplus:
+    if not flask_restx:
         return
 
-    api = flask_restplus.Api(version="1.0", title="My Example API")
+    api = flask_restx.Api(version="1.0", title="My Example API")
     api.add_resource(HelloWorld, "/hello")
 
     blueprint = flask.Blueprint("api", __name__, url_prefix="/api")
