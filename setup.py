@@ -27,7 +27,7 @@ with open(readme_file) as f:
 
 setuptools.setup(
     name="flacon",
-    version="0.4.0",
+    version="0.5.0",
     include_package_data=True,
     install_requires=_INSTALL_REQUIRES,
     extras_require={"twisted": ["flask-twisted", "twisted"], "gunicorn": ["gunicorn"]},
